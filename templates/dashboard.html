@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+Главная — RP Generator
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Мои рабочие программы
+            </h1>
+
+            <p>
+                Здесь находятся созданные рабочие
+                учебные программы.
+            </p>
+
+        </div>
+
+
+        <a
+            class="button"
+            href="{{ url_for('create') }}"
+        >
+            + Создать РП
+        </a>
+
+    </div>
+
+
+    {% if programs %}
+
+    <div class="program-list">
+
+        {% for program in programs %}
+
+        <div class="program-card">
+
+            <h2>
+                {{ program["title"] }}
+            </h2>
+
+            <p>
+                <b>Специальность:</b>
+                {{ program["specialty"] }}
+            </p>
+
+            <p>
+                <b>Курс:</b>
+                {{ program["course"] }}
+            </p>
+
+            <p>
+                <b>Группа:</b>
+                {{ program["group_name"] }}
+            </p>
+
+            <p>
+                <b>Часы:</b>
+                {{ program["hours"] }}
+            </p>
+
+            <p>
+
+                <b>Статус:</b>
+
+                <span class="status">
+                    {{ program["status"] }}
+                </span>
+
+            </p>
+
+
+            <a
+                class="button"
+                href="{{ url_for(
+                    'program',
+                    program_id=program['id']
+                ) }}"
+            >
+                Открыть
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>
+            Программ пока нет
+        </h2>
+
+        <p>
+            Создайте первую рабочую учебную программу.
+        </p>
+
+        <a
+            class="button"
+            href="{{ url_for('create') }}"
+        >
+            Создать первую РП
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
