@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+
+{% block title %}
+Создание РП — RP Generator
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <h1>
+        Создание рабочей учебной программы
+    </h1>
+
+    <p>
+        Заполните основные данные программы.
+    </p>
+
+
+    <form
+        method="POST"
+        class="form-box"
+    >
+
+        <h2>
+            Общая информация
+        </h2>
+
+
+        <label>
+            Название дисциплины
+        </label>
+
+        <input
+            type="text"
+            name="title"
+            placeholder="Например: Основы программирования"
+            required
+        >
+
+
+        <label>
+            Специальность
+        </label>
+
+        <input
+            type="text"
+            name="specialty"
+            value="06130100 — Программное обеспечение"
+            required
+        >
+
+
+        <label>
+            Квалификация
+        </label>
+
+        <input
+            type="text"
+            name="qualification"
+            value="4S06130103 — Разработчик программного обеспечения"
+            required
+        >
+
+
+        <div class="form-row">
+
+            <div>
+
+                <label>
+                    Курс
+                </label>
+
+                <select name="course">
+
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+
+                </select>
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Семестр
+                </label>
+
+                <select name="semester">
+
+                    <option>1</option>
+                    <option>2</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <label>
+            Группа
+        </label>
+
+        <input
+            type="text"
+            name="group_name"
+            placeholder="Например: РПО-24-3"
+            required
+        >
+
+
+        <label>
+            Учебный год
+        </label>
+
+        <input
+            type="text"
+            name="year"
+            value="2026-2027"
+            required
+        >
+
+
+        <label>
+            Язык обучения
+        </label>
+
+        <select name="language">
+
+            <option>Русский</option>
+            <option>Казахский</option>
+
+        </select>
+
+
+        <label>
+            Тип программы
+        </label>
+
+        <select name="program_type">
+
+            <option>Дисциплина</option>
+            <option>Модуль</option>
+
+        </select>
+
+
+        <label>
+            Код дисциплины
+        </label>
+
+        <input
+            type="text"
+            name="code"
+            placeholder="Например: ОП.01"
+        >
+
+
+        <div class="form-row">
+
+            <div>
+
+                <label>
+                    Количество часов
+                </label>
+
+                <input
+                    type="number"
+                    name="hours"
+                    value="72"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Количество кредитов
+                </label>
+
+                <input
+                    type="number"
+                    name="credits"
+                    value="2"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+        </div>
+
+
+        <label>
+            Форма контроля
+        </label>
+
+        <select name="control">
+
+            <option>
+                Экзамен
+            </option>
+
+            <option>
+                Зачет
+            </option>
+
+            <option>
+                Дифференцированный зачет
+            </option>
+
+        </select>
+
+
+        <h2>
+            Цель и задачи
+        </h2>
+
+
+        <label>
+            Цель программы
+        </label>
+
+        <textarea
+            name="goal"
+            rows="5"
+            required
+        >Формирование у обучающихся знаний и практических навыков по изучаемой дисциплине.</textarea>
+
+
+        <label>
+            Задачи программы
+        </label>
+
+        <textarea
+            name="tasks"
+            rows="7"
+            required
+        >Изучить основные понятия дисциплины.
+Освоить основные методы работы.
+Получить практические навыки.
+Научиться применять полученные знания на практике.</textarea>
+
+
+        <button type="submit">
+            Создать программу
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
