@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+Вход — RP Generator
+{% endblock %}
+
+
+{% block content %}
+
+<div class="login-container">
+
+    <div class="login-box">
+
+        <h1>
+            RP Generator
+        </h1>
+
+        <p>
+            Система автоматизированной разработки
+            рабочих учебных программ
+        </p>
+
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            <label>
+                Логин
+            </label>
+
+            <input
+                type="text"
+                name="login"
+                placeholder="Введите логин"
+                required
+            >
+
+
+            <label>
+                Пароль
+            </label>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Введите пароль"
+                required
+            >
+
+
+            <button type="submit">
+                Войти
+            </button>
+
+        </form>
+
+
+        <div class="test-login">
+
+            <b>Тестовый доступ</b>
+
+            <br><br>
+
+            Логин: teacher
+
+            <br>
+
+            Пароль: 1234
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
