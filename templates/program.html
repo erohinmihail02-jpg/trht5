@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ program["title"] }} — RP Generator
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                {{ program["title"] }}
+            </h1>
+
+            <p>
+                Рабочая учебная программа
+            </p>
+
+        </div>
+
+
+        <a
+            class="button"
+            href="{{ url_for(
+                'word',
+                program_id=program['id']
+            ) }}"
+        >
+            Скачать Word
+        </a>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <h2>
+            Общая информация
+        </h2>
+
+        <p>
+            <b>Специальность:</b>
+            {{ program["specialty"] }}
+        </p>
+
+        <p>
+            <b>Квалификация:</b>
+            {{ program["qualification"] }}
+        </p>
+
+        <p>
+            <b>Курс:</b>
+            {{ program["course"] }}
+        </p>
+
+        <p>
+            <b>Группа:</b>
+            {{ program["group_name"] }}
+        </p>
+
+        <p>
+            <b>Учебный год:</b>
+            {{ program["year"] }}
+        </p>
+
+        <p>
+            <b>Семестр:</b>
+            {{ program["semester"] }}
+        </p>
+
+        <p>
+            <b>Язык:</b>
+            {{ program["language"] }}
+        </p>
+
+        <p>
+            <b>Количество часов:</b>
+            {{ program["hours"] }}
+        </p>
+
+        <p>
+            <b>Количество кредитов:</b>
+            {{ program["credits"] }}
+        </p>
+
+        <p>
+            <b>Форма контроля:</b>
+            {{ program["control"] }}
+        </p>
+
+        <p>
+            <b>Статус:</b>
+
+            <span class="status">
+                {{ program["status"] }}
+            </span>
+
+        </p>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <h2>
+            Цель программы
+        </h2>
+
+        <p>
+            {{ program["goal"] }}
+        </p>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <h2>
+            Задачи
+        </h2>
+
+        <p class="pre-text">
+            {{ program["tasks"] }}
+        </p>
+
+    </div>
+
+
+    <div class="info-box">
+
+        <div class="page-header">
+
+            <h2>
+                Тематический план
+            </h2>
+
+            <a
+                class="button"
+                href="{{ url_for(
+                    'generate_topics',
+                    program_id=program['id']
+                ) }}"
+            >
+                Автоматически создать темы
+            </a>
+
+        </div>
+
+
+        {% if topics %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>№</th>
+
+                    <th>Тема</th>
+
+                    <th>Теория</th>
+
+                    <th>Практика</th>
+
+                    <th>Действие</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for topic in topics %}
+
+                <tr>
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+                    <td>
+                        {{ topic["name"] }}
+                    </td>
+
+                    <td>
+                        {{ topic["theory"] }}
+                    </td>
+
+                    <td>
+                        {{ topic["practice"] }}
+                    </td>
+
+                    <td>
+
+                        <a
+                            class="delete"
+                            href="{{ url_for(
+                                'delete_topic',
+                                topic_id=topic['id']
+                            ) }}"
+                        >
+                            Удалить
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p>
+            Тем пока нет.
+            Нажмите «Автоматически создать темы».
+        </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="info-box">
+
+        <h2>
+            Добавить тему вручную
+        </h2>
+
+
+        <form
+            method="POST"
+            action="{{ url_for(
+                'add_topic',
+                program_id=program['id']
+            ) }}"
+        >
+
+            <label>
+                Название темы
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Введите тему"
+                required
+            >
+
+
+            <div class="form-row">
+
+                <div>
+
+                    <label>
+                        Теория
+                    </label>
+
+                    <input
+                        type="number"
+                        name="theory"
+                        value="1"
+                        min="0"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>
+                        Практика
+                    </label>
+
+                    <input
+                        type="number"
+                        name="practice"
+                        value="1"
+                        min="0"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button type="submit">
+                Добавить тему
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a
+            class="button"
+            href="{{ url_for(
+                'send_program',
+                program_id=program['id']
+            ) }}"
+        >
+            Отправить на проверку
+        </a>
+
+
+        <a
+            class="button secondary"
+            href="{{ url_for('dashboard') }}"
+        >
+            Вернуться назад
+        </a>
+
+    </div>
+
+
+</div>
+
+{% endblock %}
