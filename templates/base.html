@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        RP Generator
+        {% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        RP Generator
+    </div>
+
+    {% if session.get("user") %}
+
+    <nav>
+
+        <a href="{{ url_for('dashboard') }}">
+            Главная
+        </a>
+
+        <a href="{{ url_for('create') }}">
+            Создать РП
+        </a>
+
+        <a href="{{ url_for('logout') }}">
+            Выйти
+        </a>
+
+    </nav>
+
+    {% endif %}
+
+</header>
+
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+</body>
+
+</html>
